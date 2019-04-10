@@ -45,18 +45,10 @@ def read_reviews(driver, file):     #read reviews through the use of chrome driv
             url_cat = base_url + 'dp/' + asin
             browser.get(url_cat)
             source = browser.page_source
-
             soup = BS(source, 'html.parser')
-
-            categ = soup.find_all('a',
-                        {'class': 'a-link-normal a-color-tertiary'})  #scrape the category of product
-            #print(categ)
-            #categ_text = [(c.text) for c in categ]
-            categories = ''
-            for c in categ:
-                categories = categories + (c.text).strip() + ", "
-            #print(categories)
-            categ = categories
+            categ = soup.find_all('ul', {'class': 'a-unordered-list a-horizontal a-size-small'})
+            for x in categ:
+                categ = re.sub(r'\W+', ', ', x.text.strip())
 
             # get reviews page count
             url = base_url + 'product-reviews/' + asin

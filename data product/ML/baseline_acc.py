@@ -1,4 +1,6 @@
 #baseline_acc.py
+#The following code was partially adapted from Pedro Morales <part.morales@gmail.com>
+
 import numpy as np
 import pandas as pd
 

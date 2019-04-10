@@ -1,21 +1,19 @@
 # make_predictions.py
-# make predictions
+# make predictions about products
 from sklearn.linear_model import LogisticRegression
-from sklearn.datasets.samples_generator import make_blobs
 
 import numpy as np
 import pandas as pd
 
 from sklearn.externals import joblib
 
-def testModel():
+def makePredictions():
+	#load the model
 	filename = 'model_products.sav'
 
 	loaded_model = joblib.load(filename)
-	#result = loaded_model.score(X_test, Y_test)
-	#print(result)
 
-	file = "model_test_big.csv"
+	file = "products_for_prediction.csv"
 	Xnew = pd.read_csv(file)
 
 	# define one new instance
@@ -27,11 +25,11 @@ def testModel():
 	Xnew['predict'] = ynew
 	Xnew['not_featured_prob'] = ynew_prob[:,0]
 	Xnew['featured_prob'] = ynew_prob[:,1]
-	Xnew.to_csv("preds.csv")
+	Xnew.to_csv("predictions.csv")
 
 	print(Xnew)
 	#print(ynew_prob)
 
 
 if __name__ == "__main__":
-	testModel()
+	makePredictions()

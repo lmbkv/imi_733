@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+#trying to find the percentage change in the number of comments that each product in each category is getting before and after the release of the article
+
 path = "/home/aroun/Documents/Sem2/Project/Final/Buzzfeed/Buzzfeed_Reviews_Folder/"
 
 fn =  (x for x in os.listdir(path) if '.~' not in x)
@@ -13,21 +15,27 @@ for filename in fn:
 #     display(df)
    #COUNT OF COMMENTS PER DAY
     
-    comment_count_per_day_df = df.groupby('days').size().to_frame('Comment_count').reset_index()
+#     comment_count_per_day_df = df.groupby('days').size().to_frame('Comment_count').reset_index()
     
-    comment_count_per_day_df.plot.line(figsize=(15,4),grid=False,x='days',y='Comment_count',xlim=(-100,200))
+#     comment_count_per_day_df.plot.line(figsize=(15,4),grid=False,x='days',y='Comment_count',xlim=(-100,200))
     
 
 
 df_gp = df.copy()
 
+
+#counting how many comments each product in each category is getting on each day
 df_gp = df_gp.groupby(['asin','days','category']).size().to_frame('counts').reset_index()
 
-
+#finding the cummulatie sum of the number of comments each day of each product in each category  
 df_grouped_asin = df_gp.groupby(by=['asin','days','category']).sum().groupby(level=[0]).cumsum().reset_index()
 
+
+#finding the unique products
 unique_asin = df_grouped_asin['asin'].unique()
 
+
+#dividing the days into before and after the release of the article
 df_before_30 = df_grouped_asin[(df_grouped_asin.days >= -30 ) & (df_grouped_asin.days < 0)]
 
 df_after_30 = df_grouped_asin[(df_grouped_asin.days <= 30 ) & (df_grouped_asin.days >= 0)]
@@ -43,12 +51,14 @@ unique_asin_categ = categ_df.values.tolist()
 
 #finding the min day, zero day (from both df), max day for each asin
 
-min_day_asin = {}
-zero_day_asin_1 = {}
-zero_day_asin_2 = {}
-max_day_asin = {}
+min_day_asin = {} #finding the minimum day on which a product has comments in the range of -30 to 0
+zero_day_asin_1 = {}  ##finding the Maximum day on which a product has comments in the range of -30 to 0
+zero_day_asin_2 = {}#finding the minimum day on which a product has comments in the range of 0 to 30
+max_day_asin = {}#finding the maximum day on which a product has comments in the range of 0 to 30
 
-min_day_csum = {}
+
+#the cummulative sum of the product on the corresponding min and max days
+min_day_csum = {} 
 zero_day_csum_1 = {}
 zero_day_csum_2 = {}
 max_day_csum = {}

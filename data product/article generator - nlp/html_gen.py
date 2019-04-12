@@ -269,6 +269,8 @@ for [x,y] in image_list:
 
 # print(category_dict,image_dict)
 
+for key,value in image_dict.items():
+  print(len(value))
 
 html_text = html_text + """ <div class="header">
   <h2>Top cute things you can buy right now</h2>
@@ -277,10 +279,12 @@ html_text = html_text + """ <div class="header">
 """
 
 for key,value in title_dict.items():
-	html_text = html_text + """<div class="card"><h2>""" + value + """</h2>"""
-	html_text = html_text + """<h5>"""+category_dict[key]+"""</h5>"""
-	html_text = html_text + """<img src=" """+ image_dict[key] +""" ">"""
-	html_text = html_text + "<h3><p>" + comment_dict[key] + "</p></h3></div>"
+  if(len(image_dict[key]) != 0):  #removing the articles where no images were obtained
+    html_text = html_text + """<div class="card"><h2>""" + value + """</h2>"""
+    html_text = html_text + """<h5>"""+category_dict[key]+"""</h5>"""
+    html_text = html_text + """<img src=" """+ image_dict[key] +""" ">"""
+    html_text = html_text + "<h3><p>" + comment_dict[key] + "</p></h3></div>" + "\n"
+  # html_text = html_text + "/n"
 
 
 

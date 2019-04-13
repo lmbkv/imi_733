@@ -39,7 +39,7 @@ percentage_change.py - was used to find the percentage increase in the number of
 
 Has two sub-folders : ML and Article generator - nlp
 
-# ML : 
+# ML 
 
 data_preparation_for_training.py - here the data is prepared for training by labeling and combining datasets
 

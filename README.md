@@ -16,6 +16,10 @@ amazon_reviews_scraper.py - was used to scrape reviews of products that were not
 
 amzbs4.py - is a file that has various functions that are invoked in amazon_reviews_scraper.py
 
+bp_art_link_scraper.py - is used to scrape the article links from BestProducts.com website and create a csv file.
+
+bp_art_scraper.py - is used to scrape the product name, date of article, product description and corresponding amazon link of the product from the articles on BestProducts.com 
+
 # Data Integration
 
 er_cateogries.py - Used to find the global categories for each product. We take data that was scraped and categories from amazon dataset and perform entity resolution and output products and corresponding global categories.

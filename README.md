@@ -1,7 +1,7 @@
 # imi_733
 Internet Media Influence
 
-The code for the project is divided into four parts. Namely, Data Collection, Data Integration, Data Analysis and Data Product.
+The code for the project is divided into four parts. Namely, Data Collection and Cleaning, Data Integration, Data Analysis and Data Product.
 
 The task of acquiring the data consisted of mainly scraping different websites. So, the folder Data Collection has a subfolder called Scrapers which has all the scrapers which were used to scrape data from Buzzfeed, Amazon, BestProducts and so on.
 
@@ -41,17 +41,17 @@ Has two sub-folders : ML and Article generator - nlp
 
 # ML : 
 
-data_preparation_for_training.py - here the data is prepared for training on the various models that we have chosen
+data_preparation_for_training.py - here the data is prepared for training by labeling and combining datasets
 
-baseline_acc.py - 
+baseline_acc.py - the script calculates baseline accuracy that is used as a reference for further optimization
 
-model_selection.py -
+model_selection.py - selecting a best performing model
 
-make_predictions.py -
+make_predictions.py - making predictions on newly obtained data with the optimized model
 
-discrimination_threshold_select.py - 
+discrimination_threshold_select.py - visualizing the discrimination threshold for binary classification
 
-model_tuning_params.py - 
+model_tuning_params.py - script for hyper-parameters tuning
 
 # Article generator - nlp
 
